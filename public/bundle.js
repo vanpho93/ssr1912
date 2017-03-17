@@ -21680,13 +21680,17 @@ module.exports = traverseAllChildren;
 /* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
-const React = __webpack_require__(80);
-const ReactDOM = __webpack_require__(79);
+"use strict";
 
-// ReactDOM.render(
-//     <a href="/">Google</a>,
-//     document.getElementById('root')
-// );
+
+var React = __webpack_require__(80);
+var ReactDOM = __webpack_require__(79);
+
+ReactDOM.render(React.createElement(
+    'a',
+    { href: '/' },
+    'Google'
+), document.getElementById('root'));
 
 // yarn add 
 // babel-core 
@@ -21694,7 +21698,6 @@ const ReactDOM = __webpack_require__(79);
 // babel-preset-es2015 
 // babel-preset-react
 // -dev
-
 
 /***/ })
 /******/ ]);
