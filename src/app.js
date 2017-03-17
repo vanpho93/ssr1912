@@ -1,8 +1,9 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const NoteForm = require('./components/NoteForm');
 
 ReactDOM.render(
-    <a href="/">Google</a>,
+    <NoteForm />,
     document.getElementById('root')
 );
 
