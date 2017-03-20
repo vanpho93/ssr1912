@@ -9472,20 +9472,30 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var Weather = function (_React$Component) {
     _inherits(Weather, _React$Component);
 
-    function Weather() {
+    function Weather(props) {
         _classCallCheck(this, Weather);
 
-        return _possibleConstructorReturn(this, (Weather.__proto__ || Object.getPrototypeOf(Weather)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (Weather.__proto__ || Object.getPrototypeOf(Weather)).call(this, props));
+
+        _this.state = {
+            city: 'Saigon',
+            temp: 30
+        };
+        return _this;
     }
 
     _createClass(Weather, [{
         key: 'render',
         value: function render() {
+            var _state = this.state,
+                city = _state.city,
+                temp = _state.temp;
+
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(_WeatherForm2.default, null),
-                _react2.default.createElement(_WeatherMessage2.default, null)
+                _react2.default.createElement(_WeatherMessage2.default, { city: city, temp: temp })
             );
         }
     }]);
@@ -21802,15 +21812,22 @@ var WeatherForm = function (_React$Component) {
     }
 
     _createClass(WeatherForm, [{
-        key: 'render',
+        key: "render",
         value: function render() {
             return _react2.default.createElement(
-                'div',
+                "div",
                 null,
+                _react2.default.createElement("input", {
+                    type: "text",
+                    placeholder: "Enter your city name",
+                    ref: "txtCity"
+                }),
+                _react2.default.createElement("br", null),
+                _react2.default.createElement("br", null),
                 _react2.default.createElement(
-                    'h3',
+                    "button",
                     null,
-                    'Weather Form Component'
+                    "Get Weather"
                 )
             );
         }
@@ -21858,13 +21875,20 @@ var Weather = function (_React$Component) {
     _createClass(Weather, [{
         key: 'render',
         value: function render() {
+            var _props = this.props,
+                city = _props.city,
+                temp = _props.temp;
+
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(
                     'h3',
                     null,
-                    'Weather Message Component'
+                    city,
+                    ' ',
+                    temp,
+                    ' do C'
                 )
             );
         }

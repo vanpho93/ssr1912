@@ -4,7 +4,13 @@ export default class WeatherForm extends React.Component {
     render() {
         return ( 
             <div>
-                <h3>Weather Form Component</h3>
+                <input 
+                    type="text" 
+                    placeholder="Enter your city name" 
+                    ref="txtCity"
+                />
+                <br /><br />
+                <button>Get Weather</button>
             </div>
         );
     }
