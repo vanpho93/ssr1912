@@ -21987,11 +21987,16 @@ module.exports = traverseAllChildren;
 "use strict";
 
 
+var _List = __webpack_require__(80);
+
+var _List2 = _interopRequireDefault(_List);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var React = __webpack_require__(25);
 var ReactDOM = __webpack_require__(81);
-var List = __webpack_require__(80);
 
-ReactDOM.render(React.createElement(List, null), document.getElementById('root'));
+ReactDOM.render(React.createElement(_List2.default, null), document.getElementById('root'));
 
 // yarn add 
 // babel-core 

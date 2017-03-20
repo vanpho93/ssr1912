@@ -1,6 +1,7 @@
+import List from './components/List';
+
 const React = require('react');
 const ReactDOM = require('react-dom');
-const List = require('./components/List');
 
 ReactDOM.render(
     <List />,

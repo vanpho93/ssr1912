@@ -6,10 +6,10 @@ export default class List extends React.Component {
     constructor(props) {
         super(props);
         this.state = { mang: [
-            { id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false },
-            { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true },
-            { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }
-        ] };
+            { id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false},
+            { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true},
+            { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false}
+        ] }
     }
 
     render() {
