@@ -1,10 +1,10 @@
-import List from './components/List';
+import Weather from './components/Weather';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
 
 ReactDOM.render(
-    <List />,
+    <Weather />,
     document.getElementById('root')
 );
 
@@ -14,3 +14,10 @@ ReactDOM.render(
 // babel-preset-es2015 
 // babel-preset-react
 // -dev
+
+// { 
+    /*<Weather> -> state city, temp
+    <WeatherForm /> -> form button
+    <WeatherMessage props/> -> Saigon hien tai 30 do C
+// </Weather>*/ 
+//}
