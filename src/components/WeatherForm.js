@@ -1,6 +1,13 @@
 import React from 'react';
 
 export default class WeatherForm extends React.Component {
+    getTemp() {
+        const { parent } = this.props;
+        const cityName = this.refs.txtCity.value;
+        parent.state.city = cityName;
+        parent.setState(parent.state);
+    }
+
     render() {
         return ( 
             <div>
@@ -10,7 +17,7 @@ export default class WeatherForm extends React.Component {
                     ref="txtCity"
                 />
                 <br /><br />
-                <button>Get Weather</button>
+                <button onClick={this.getTemp.bind(this)}>Get Weather</button>
             </div>
         );
     }

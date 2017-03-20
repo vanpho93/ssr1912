@@ -9494,7 +9494,7 @@ var Weather = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(_WeatherForm2.default, null),
+                _react2.default.createElement(_WeatherForm2.default, { parent: this }),
                 _react2.default.createElement(_WeatherMessage2.default, { city: city, temp: temp })
             );
         }
@@ -21812,6 +21812,15 @@ var WeatherForm = function (_React$Component) {
     }
 
     _createClass(WeatherForm, [{
+        key: "getTemp",
+        value: function getTemp() {
+            var parent = this.props.parent;
+
+            var cityName = this.refs.txtCity.value;
+            parent.state.city = cityName;
+            parent.setState(parent.state);
+        }
+    }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
@@ -21826,7 +21835,7 @@ var WeatherForm = function (_React$Component) {
                 _react2.default.createElement("br", null),
                 _react2.default.createElement(
                     "button",
-                    null,
+                    { onClick: this.getTemp.bind(this) },
                     "Get Weather"
                 )
             );

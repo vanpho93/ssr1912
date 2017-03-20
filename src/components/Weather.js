@@ -14,7 +14,7 @@ export default class Weather extends React.Component {
         const { city, temp } = this.state;
         return ( 
             <div>
-                <WeatherForm />
+                <WeatherForm parent={this} />
                 <WeatherMessage city={city} temp={temp} />
             </div>
         );
