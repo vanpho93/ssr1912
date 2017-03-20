@@ -1,6 +1,17 @@
-const React = require('react');
+import React from 'react';
 
-class NoteForm extends React.Component {
+export default class NoteForm extends React.Component {
+  add() {
+    const { parent } = this.props;
+    const newObj = {
+        id: this.refs.txtId.value,
+        subject: this.refs.txtSubject.value,
+        content: this.refs.txtContent.value,
+        important: true
+    };
+    parent.state.mang.push(newObj);
+    parent.setState(parent.state);
+  }
   render() {
     return (
       <div>
@@ -11,10 +22,8 @@ class NoteForm extends React.Component {
         <br /><br />
         <input type="text" ref="txtContent" placeholder="content" />
         <br /><br />
-        <button>Add</button>
+        <button onClick={this.add.bind(this)}>Add</button>
       </div>
     );
   }
 }
-
-module.exports = NoteForm;

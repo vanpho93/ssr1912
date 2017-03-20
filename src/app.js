@@ -1,9 +1,9 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
-const NoteForm = require('./components/NoteForm');
+const List = require('./components/List');
 
 ReactDOM.render(
-    <NoteForm />,
+    <List />,
     document.getElementById('root')
 );
 
