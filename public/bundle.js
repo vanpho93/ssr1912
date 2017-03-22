@@ -9567,22 +9567,15 @@ var WeatherForm = function (_React$Component) {
             parent.state.isLoading = true;
             parent.setState(parent.state);
 
-            $.ajax({
-                type: 'get',
-                url: url + cityName,
-                success: function success(data) {
-                    var temp = data.main.temp;
+            fetch(url + cityName).then(function (res) {
+                return res.json();
+            }).then(function (response) {
+                var temp = response.main.temp;
 
-                    parent.state.city = cityName;
-                    parent.state.temp = temp;
-                    parent.state.isLoading = false;
-                    parent.setState(parent.state);
-                },
-                error: function error(request) {
-                    alert(request.responseJSON.message);
-                    parent.state.isLoading = false;
-                    parent.setState(parent.state);
-                }
+                parent.state.city = cityName;
+                parent.state.temp = temp;
+                parent.state.isLoading = false;
+                parent.setState(parent.state);
             });
         }
     }, {
