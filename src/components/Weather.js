@@ -7,15 +7,20 @@ export default class Weather extends React.Component {
         super(props);
         this.state = {
             city: 'Saigon',
-            temp: 30
+            temp: 30,
+            isLoading: false
         };
     }
     render() {
-        const { city, temp } = this.state;
+        const { city, temp, isLoading } = this.state;
         return ( 
             <div>
                 <WeatherForm parent={this} />
-                <WeatherMessage city={city} temp={temp} />
+                <WeatherMessage 
+                    city={city} 
+                    temp={temp} 
+                    isLoading={isLoading} 
+                />
             </div>
         );
     }

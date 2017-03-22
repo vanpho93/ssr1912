@@ -9479,7 +9479,8 @@ var Weather = function (_React$Component) {
 
         _this.state = {
             city: 'Saigon',
-            temp: 30
+            temp: 30,
+            isLoading: false
         };
         return _this;
     }
@@ -9489,13 +9490,18 @@ var Weather = function (_React$Component) {
         value: function render() {
             var _state = this.state,
                 city = _state.city,
-                temp = _state.temp;
+                temp = _state.temp,
+                isLoading = _state.isLoading;
 
             return _react2.default.createElement(
                 'div',
                 null,
                 _react2.default.createElement(_WeatherForm2.default, { parent: this }),
-                _react2.default.createElement(_WeatherMessage2.default, { city: city, temp: temp })
+                _react2.default.createElement(_WeatherMessage2.default, {
+                    city: city,
+                    temp: temp,
+                    isLoading: isLoading
+                })
             );
         }
     }]);
@@ -9632,19 +9638,25 @@ var Weather = function (_React$Component) {
         value: function render() {
             var _props = this.props,
                 city = _props.city,
-                temp = _props.temp;
+                temp = _props.temp,
+                isLoading = _props.isLoading;
 
+            var msg = isLoading ? _react2.default.createElement(
+                'h3',
+                null,
+                'Loading...'
+            ) : _react2.default.createElement(
+                'h3',
+                null,
+                city,
+                ' ',
+                temp,
+                ' do C'
+            );
             return _react2.default.createElement(
                 'div',
                 null,
-                _react2.default.createElement(
-                    'h3',
-                    null,
-                    city,
-                    ' ',
-                    temp,
-                    ' do C'
-                )
+                msg
             );
         }
     }]);
