@@ -9559,7 +9559,7 @@ var WeatherForm = function (_React$Component) {
 
     _createClass(WeatherForm, [{
         key: 'getTemp',
-        value: function getTemp() {
+        value: async function getTemp() {
             var parent = this.props.parent;
 
             var cityName = this.refs.txtCity.value;
@@ -9570,12 +9570,17 @@ var WeatherForm = function (_React$Component) {
             fetch(url + cityName).then(function (res) {
                 return res.json();
             }).then(function (response) {
-                var temp = response.main.temp;
+                try {
+                    var temp = response.main.temp;
 
-                parent.state.city = cityName;
-                parent.state.temp = temp;
-                parent.state.isLoading = false;
-                parent.setState(parent.state);
+                    parent.state.city = cityName;
+                    parent.state.temp = temp;
+                } catch (e) {
+                    alert(response.message);
+                } finally {
+                    parent.state.isLoading = false;
+                    parent.setState(parent.state);
+                }
             });
         }
     }, {

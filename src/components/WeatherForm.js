@@ -3,7 +3,7 @@ import React from 'react';
 const url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7b6dc8368c752517b2d&units=metric&q=';
 
 export default class WeatherForm extends React.Component {
-    getTemp() {
+    async getTemp() {
         const { parent } = this.props;
         const cityName = this.refs.txtCity.value;
         
@@ -13,11 +13,16 @@ export default class WeatherForm extends React.Component {
         fetch(url + cityName)
         .then(res => res.json())
         .then(response => {
-            const { temp } = response.main;
-            parent.state.city = cityName;
-            parent.state.temp = temp;
-            parent.state.isLoading = false;
-            parent.setState(parent.state);
+            try {
+                const { temp } = response.main;
+                parent.state.city = cityName;
+                parent.state.temp = temp;
+            } catch (e) {
+                alert(response.message);
+            } finally {
+                parent.state.isLoading = false;
+                parent.setState(parent.state);
+            }
         });
     }
 
