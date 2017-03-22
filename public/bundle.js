@@ -9569,19 +9569,25 @@ var WeatherForm = function (_React$Component) {
             parent.state.isLoading = true;
             parent.setState(parent.state);
 
-            (0, _getTempByCity2.default)(cityName).then(function (response) {
-                try {
-                    var temp = response.main.temp;
+            var temp = await (0, _getTempByCity2.default)(cityName);
+            parent.state.city = cityName;
+            parent.state.temp = temp;
+            parent.state.isLoading = false;
+            parent.setState(parent.state);
+            console.log(temp);
 
-                    parent.state.city = cityName;
-                    parent.state.temp = temp;
-                } catch (e) {
-                    alert(response.message);
-                } finally {
-                    parent.state.isLoading = false;
-                    parent.setState(parent.state);
-                }
-            });
+            // .then(response => {
+            //     try {
+            //         const { temp } = response.main;
+            //         parent.state.city = cityName;
+            //         parent.state.temp = temp;
+            //     } catch (e) {
+            //         alert(response.message);
+            //     } finally {
+            //         parent.state.isLoading = false;
+            //         parent.setState(parent.state);
+            //     }
+            // });
         }
     }, {
         key: 'render',
@@ -21951,13 +21957,15 @@ Object.defineProperty(exports, "__esModule", {
 });
 var url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7b6dc8368c752517b2d&units=metric&q=';
 
-var getTempyCity = function getTempyCity(cityName) {
+var getTempCity = function getTempCity(cityName) {
     return fetch(url + cityName).then(function (res) {
         return res.json();
+    }).then(function (response) {
+        return response.main.temp;
     });
 };
 
-exports.default = getTempyCity;
+exports.default = getTempCity;
 
 /***/ })
 /******/ ]);
