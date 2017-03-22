@@ -9569,12 +9569,17 @@ var WeatherForm = function (_React$Component) {
             parent.state.isLoading = true;
             parent.setState(parent.state);
 
-            var temp = await (0, _getTempByCity2.default)(cityName);
-            parent.state.city = cityName;
-            parent.state.temp = temp;
+            var response = await (0, _getTempByCity2.default)(cityName);
+            if (response.main) {
+                var temp = response.main.temp;
+
+                parent.state.city = cityName;
+                parent.state.temp = temp;
+            } else {
+                alert(response.message);
+            }
             parent.state.isLoading = false;
             parent.setState(parent.state);
-            console.log(temp);
 
             // .then(response => {
             //     try {
@@ -21960,8 +21965,6 @@ var url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7b6
 var getTempCity = function getTempCity(cityName) {
     return fetch(url + cityName).then(function (res) {
         return res.json();
-    }).then(function (response) {
-        return response.main.temp;
     });
 };
 

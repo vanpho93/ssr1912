@@ -9,13 +9,17 @@ export default class WeatherForm extends React.Component {
         parent.state.isLoading = true;
         parent.setState(parent.state);
 
-        const temp = await getTempByCity(cityName);
-        parent.state.city = cityName;
-        parent.state.temp = temp;
+        const response = await getTempByCity(cityName);
+        if (response.main) {
+            const { temp } = response.main;
+            parent.state.city = cityName;
+            parent.state.temp = temp;
+        } else {
+            alert(response.message);
+        }
         parent.state.isLoading = false;
         parent.setState(parent.state);
-        console.log(temp);
-        
+
         // .then(response => {
         //     try {
         //         const { temp } = response.main;

@@ -3,7 +3,6 @@ const url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7
 const getTempCity = (cityName) => (
     fetch(url + cityName)
     .then(res => res.json())
-    .then(response => response.main.temp)
 );
 
 export default getTempCity;
