@@ -9557,10 +9557,13 @@ var WeatherForm = function (_React$Component) {
             var parent = this.props.parent;
 
             var cityName = this.refs.txtCity.value;
-            parent.state.city = cityName;
-            parent.setState(parent.state);
+
             $.get(url + cityName, function (data) {
-                return console.log(data.main.temp);
+                var temp = data.main.temp;
+
+                parent.state.city = cityName;
+                parent.state.temp = temp;
+                parent.setState(parent.state);
             });
         }
     }, {

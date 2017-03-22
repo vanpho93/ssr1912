@@ -6,9 +6,13 @@ export default class WeatherForm extends React.Component {
     getTemp() {
         const { parent } = this.props;
         const cityName = this.refs.txtCity.value;
-        parent.state.city = cityName;
-        parent.setState(parent.state);
-        $.get(url + cityName, data => console.log(data.main.temp));
+        
+        $.get(url + cityName, data => {
+            const { temp } = data.main;
+            parent.state.city = cityName;
+            parent.state.temp = temp;
+            parent.setState(parent.state);
+        });
     }
 
     render() {
