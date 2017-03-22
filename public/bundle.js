@@ -9538,6 +9538,10 @@ var _react = __webpack_require__(25);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _getTempByCity = __webpack_require__(181);
+
+var _getTempByCity2 = _interopRequireDefault(_getTempByCity);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -9545,8 +9549,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7b6dc8368c752517b2d&units=metric&q=';
 
 var WeatherForm = function (_React$Component) {
     _inherits(WeatherForm, _React$Component);
@@ -9567,9 +9569,7 @@ var WeatherForm = function (_React$Component) {
             parent.state.isLoading = true;
             parent.setState(parent.state);
 
-            fetch(url + cityName).then(function (res) {
-                return res.json();
-            }).then(function (response) {
+            (0, _getTempByCity2.default)(cityName).then(function (response) {
                 try {
                     var temp = response.main.temp;
 
@@ -21938,6 +21938,26 @@ ReactDOM.render(React.createElement(_Weather2.default, null), document.getElemen
 <WeatherMessage props/> -> Saigon hien tai 30 do C
 // </Weather>*/
 //}
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7b6dc8368c752517b2d&units=metric&q=';
+
+var getTempyCity = function getTempyCity(cityName) {
+    return fetch(url + cityName).then(function (res) {
+        return res.json();
+    });
+};
+
+exports.default = getTempyCity;
 
 /***/ })
 /******/ ]);

@@ -1,6 +1,5 @@
 import React from 'react';
-
-const url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7b6dc8368c752517b2d&units=metric&q=';
+import getTempByCity from '../api/getTempByCity';
 
 export default class WeatherForm extends React.Component {
     async getTemp() {
@@ -10,8 +9,7 @@ export default class WeatherForm extends React.Component {
         parent.state.isLoading = true;
         parent.setState(parent.state);
 
-        fetch(url + cityName)
-        .then(res => res.json())
+        getTempByCity(cityName)
         .then(response => {
             try {
                 const { temp } = response.main;
