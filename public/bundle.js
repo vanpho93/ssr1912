@@ -9564,11 +9564,15 @@ var WeatherForm = function (_React$Component) {
 
             var cityName = this.refs.txtCity.value;
 
+            parent.state.isLoading = true;
+            parent.setState(parent.state);
+
             $.get(url + cityName, function (data) {
                 var temp = data.main.temp;
 
                 parent.state.city = cityName;
                 parent.state.temp = temp;
+                parent.state.isLoading = false;
                 parent.setState(parent.state);
             });
         }
