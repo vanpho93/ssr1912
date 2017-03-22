@@ -10,12 +10,21 @@ export default class WeatherForm extends React.Component {
         parent.state.isLoading = true;
         parent.setState(parent.state);
 
-        $.get(url + cityName, data => {
-            const { temp } = data.main;
-            parent.state.city = cityName;
-            parent.state.temp = temp;
-            parent.state.isLoading = false;
-            parent.setState(parent.state);
+        $.ajax({
+            type: 'get',
+            url: url + cityName,
+            success(data) {
+                const { temp } = data.main;
+                parent.state.city = cityName;
+                parent.state.temp = temp;
+                parent.state.isLoading = false;
+                parent.setState(parent.state);
+            },
+            error(request) {
+                alert(request.responseJSON.message);
+                parent.state.isLoading = false;
+                parent.setState(parent.state);
+            }
         });
     }
 
