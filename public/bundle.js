@@ -9540,7 +9540,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7b6dc8368c752517b2d&units=metric&q=Saigon';
+var url = 'http://api.openweathermap.org/data/2.5/weather?appid=c4e735ea8bd7e7b6dc8368c752517b2d&units=metric&q=';
 
 var WeatherForm = function (_React$Component) {
     _inherits(WeatherForm, _React$Component);
@@ -9553,14 +9553,14 @@ var WeatherForm = function (_React$Component) {
 
     _createClass(WeatherForm, [{
         key: 'getTemp',
-        value: async function getTemp() {
+        value: function getTemp() {
             var parent = this.props.parent;
 
             var cityName = this.refs.txtCity.value;
             parent.state.city = cityName;
             parent.setState(parent.state);
-            $.get(url, function (data) {
-                return console.log(data);
+            $.get(url + cityName, function (data) {
+                return console.log(data.main.temp);
             });
         }
     }, {
