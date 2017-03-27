@@ -10466,6 +10466,14 @@ module.exports = (0, _reactRedux.connect)(function (state) {
     return { mang: state.mang };
 })(List);
 
+/**
+    1. Cai dat stage-0
+    2. Update file .babelrc
+    3. Viet action
+    4. Connect trong file Node
+    4. Check lai index - id trong file List
+*/
+
 /***/ }),
 /* 95 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -10520,12 +10528,10 @@ var Note = function (_React$Component) {
         value: function save() {
             var newContent = this.refs.txtContent.value;
             var _props = this.props,
-                parent = _props.parent,
-                index = _props.index;
+                index = _props.index,
+                dispatch = _props.dispatch;
 
-            parent.state.mang[index].content = newContent;
-            parent.setState(parent.state);
-
+            dispatch({ type: 'UPDATE_ITEM', index: index, content: newContent });
             this.state.isUpdating = false;
             this.setState(this.state);
         }
@@ -24197,10 +24203,17 @@ var reducer = function reducer() {
     var action = arguments[1];
 
     if (action.type === 'REMOVE_ITEM') {
-        console.log(action.index);
         return _extends({}, state, { mang: state.mang.filter(function (e) {
                 return e.id !== action.index;
             }) });
+    }
+    if (action.type === 'UPDATE_ITEM') {
+        return _extends({}, state, {
+            mang: state.mang.map(function (e) {
+                if (e.id !== action.index) return e;
+                return _extends({}, e, { content: action.content });
+            })
+        });
     }
     return state;
 };

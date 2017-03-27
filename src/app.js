@@ -17,8 +17,16 @@ const defaultState = {
 
 const reducer = (state = defaultState, action) => {
     if (action.type === 'REMOVE_ITEM') {
-        console.log(action.index);
         return { ...state, mang: state.mang.filter(e => e.id !== action.index) }; 
+    }
+    if (action.type === 'UPDATE_ITEM') {
+        return { 
+            ...state, 
+            mang: state.mang.map(e => {
+                if (e.id !== action.index) return e;
+                return { ...e, content: action.content };
+            }) 
+        };
     }
     return state;
 };

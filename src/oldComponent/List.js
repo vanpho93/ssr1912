@@ -27,3 +27,11 @@ class List extends React.Component {
 }
 
 module.exports = connect(state => ({ mang: state.mang }))(List);
+
+/**
+    1. Cai dat stage-0
+    2. Update file .babelrc
+    3. Viet action
+    4. Connect trong file Node
+    4. Check lai index - id trong file List
+*/

@@ -10,10 +10,8 @@ class Note extends React.Component {
     }
     save() {
         const newContent = this.refs.txtContent.value;
-        const { parent, index } = this.props;
-        parent.state.mang[index].content = newContent;
-        parent.setState(parent.state);
-
+        const { index, dispatch } = this.props;
+        dispatch({ type: 'UPDATE_ITEM', index, content: newContent });
         this.state.isUpdating = false;
         this.setState(this.state);
     }
