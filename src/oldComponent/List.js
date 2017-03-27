@@ -1,19 +1,13 @@
+import { connect } from 'react-redux';
+
 import React from 'react';
 import Note from './Note';
 import NoteForm from './NoteForm';
 
-export default class List extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { mang: [
-            { id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false},
-            { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true},
-            { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false}
-        ] };
-    }
 
+class List extends React.Component {
     render() {
-        const arrayEle = this.state.mang.map((e, i) => (
+        const arrayEle = this.props.mang.map((e, i) => (
             <Note
                 index={i}
                 subject={e.subject}
@@ -31,3 +25,5 @@ export default class List extends React.Component {
         );
     }
 }
+
+module.exports = connect(state => ({ mang: state.mang }))(List);

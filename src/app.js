@@ -1,9 +1,11 @@
+import { Provider } from 'react-redux';
 import List from './oldComponent/List';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
 
 const redux = require('redux');
+
 
 const defaultState = { 
     mang: [
@@ -14,10 +16,16 @@ const defaultState = {
 };
 
 const reducer = (state = defaultState, action) => {
-
+    return state;
 };
 
+const store = redux.createStore(reducer);
+
+console.log(store.getState());
+
 ReactDOM.render(
-    <List />,
+    <Provider store={store}>
+        <List />
+    </Provider>,
     document.getElementById('root')
 );
