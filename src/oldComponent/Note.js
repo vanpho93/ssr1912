@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 const getClass = isImportant => (isImportant ? 'red' : 'green');
 
-export default class Note extends React.Component {
+class Note extends React.Component {
     constructor(props) {
         super(props);
         this.state = { isUpdating: false };
@@ -25,9 +26,8 @@ export default class Note extends React.Component {
         this.setState(this.state);
     }
     remove() {
-      const { parent, index } = this.props;
-      parent.state.mang.splice(index, 1);
-      parent.setState(parent.state);
+      const { index, dispatch } = this.props;
+      dispatch({ type: 'REMOVE_ITEM', index });
     }
     render() {
         const { subject, content, important } = this.props;
@@ -67,4 +67,4 @@ export default class Note extends React.Component {
     }
 }
 
-// module.export = Note;
+module.exports = connect()(Note);

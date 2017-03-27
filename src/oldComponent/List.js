@@ -9,7 +9,7 @@ class List extends React.Component {
     render() {
         const arrayEle = this.props.mang.map((e, i) => (
             <Note
-                index={i}
+                index={e.id}
                 subject={e.subject}
                 content={e.content}
                 important={e.important}
