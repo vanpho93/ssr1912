@@ -24201,7 +24201,7 @@ var redux = __webpack_require__(56);
 
 var defaultState = {
     mang: [{ id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false }, { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true }, { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }],
-    updatingId: 3
+    updatingId: null
 };
 
 var reducer = function reducer() {

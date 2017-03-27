@@ -13,7 +13,7 @@ const defaultState = {
         { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true},
         { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false}
     ],
-    updatingId: 3 
+    updatingId: null 
 };
 
 const reducer = (state = defaultState, action) => {
