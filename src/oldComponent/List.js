@@ -7,7 +7,7 @@ import NoteForm from './NoteForm';
 
 class List extends React.Component {
     render() {
-        const arrayEle = this.props.mang.map((e, i) => (
+        const arrayEle = this.props.mang.map(e => (
             <Note
                 index={e.id}
                 subject={e.subject}

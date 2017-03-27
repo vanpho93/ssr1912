@@ -10440,7 +10440,7 @@ var List = function (_React$Component) {
         value: function render() {
             var _this2 = this;
 
-            var arrayEle = this.props.mang.map(function (e, i) {
+            var arrayEle = this.props.mang.map(function (e) {
                 return _react2.default.createElement(_Note2.default, {
                     index: e.id,
                     subject: e.subject,
@@ -10514,13 +10514,10 @@ var getClass = function getClass(isImportant) {
 var Note = function (_React$Component) {
     _inherits(Note, _React$Component);
 
-    function Note(props) {
+    function Note() {
         _classCallCheck(this, Note);
 
-        var _this = _possibleConstructorReturn(this, (Note.__proto__ || Object.getPrototypeOf(Note)).call(this, props));
-
-        _this.state = { isUpdating: false };
-        return _this;
+        return _possibleConstructorReturn(this, (Note.__proto__ || Object.getPrototypeOf(Note)).apply(this, arguments));
     }
 
     _createClass(Note, [{
@@ -10538,31 +10535,37 @@ var Note = function (_React$Component) {
     }, {
         key: 'cancel',
         value: function cancel() {
-            this.state.isUpdating = false;
-            this.setState(this.state);
+            var dispatch = this.props.dispatch;
+
+            dispatch({ type: 'CANCEL_UPDATE' });
         }
     }, {
         key: 'update',
         value: function update() {
-            this.state.isUpdating = true;
-            this.setState(this.state);
+            var _props2 = this.props,
+                dispatch = _props2.dispatch,
+                index = _props2.index;
+
+            dispatch({ type: 'CREATE_UPDATE', index: index });
         }
     }, {
         key: 'remove',
         value: function remove() {
-            var _props2 = this.props,
-                index = _props2.index,
-                dispatch = _props2.dispatch;
+            var _props3 = this.props,
+                index = _props3.index,
+                dispatch = _props3.dispatch;
 
             dispatch({ type: 'REMOVE_ITEM', index: index });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _props3 = this.props,
-                subject = _props3.subject,
-                content = _props3.content,
-                important = _props3.important;
+            var _props4 = this.props,
+                subject = _props4.subject,
+                content = _props4.content,
+                important = _props4.important,
+                updatingId = _props4.updatingId,
+                index = _props4.index;
 
             var input = _react2.default.createElement('input', {
                 type: 'text',
@@ -10570,7 +10573,7 @@ var Note = function (_React$Component) {
                 placeholder: 'Enter new content',
                 ref: 'txtContent'
             });
-            var xhtml = this.state.isUpdating ? input : _react2.default.createElement(
+            var xhtml = updatingId === index ? input : _react2.default.createElement(
                 'p',
                 null,
                 content
@@ -10606,7 +10609,7 @@ var Note = function (_React$Component) {
                 )
             );
 
-            var htmlControls = this.state.isUpdating ? buttonUpdate : buttonNotUpdate;
+            var htmlControls = updatingId === index ? buttonUpdate : buttonNotUpdate;
 
             return _react2.default.createElement(
                 'div',
@@ -10626,7 +10629,9 @@ var Note = function (_React$Component) {
     return Note;
 }(_react2.default.Component);
 
-module.exports = (0, _reactRedux.connect)()(Note);
+module.exports = (0, _reactRedux.connect)(function (state) {
+    return { updatingId: state.updatingId };
+})(Note);
 
 /***/ }),
 /* 97 */
@@ -24195,7 +24200,8 @@ var ReactDOM = __webpack_require__(95);
 var redux = __webpack_require__(56);
 
 var defaultState = {
-    mang: [{ id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false }, { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true }, { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }]
+    mang: [{ id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false }, { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true }, { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }],
+    updatingId: 3
 };
 
 var reducer = function reducer() {
@@ -24214,6 +24220,12 @@ var reducer = function reducer() {
                 return _extends({}, e, { content: action.content });
             })
         });
+    }
+    if (action.type === 'CANCEL_UPDATE') {
+        return _extends({}, state, { updatingId: null });
+    }
+    if (action.type === 'CREATE_UPDATE') {
+        return _extends({}, state, { updatingId: action.index });
     }
     return state;
 };

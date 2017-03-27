@@ -4,10 +4,6 @@ import { connect } from 'react-redux';
 const getClass = isImportant => (isImportant ? 'red' : 'green');
 
 class Note extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { isUpdating: false };
-    }
     save() {
         const newContent = this.refs.txtContent.value;
         const { index, dispatch } = this.props;
@@ -16,19 +12,19 @@ class Note extends React.Component {
         this.setState(this.state);
     }
     cancel() {
-        this.state.isUpdating = false;
-        this.setState(this.state);
+        const { dispatch } = this.props;
+        dispatch({ type: 'CANCEL_UPDATE' });
     }
     update() {
-        this.state.isUpdating = true;
-        this.setState(this.state);
+        const { dispatch, index } = this.props;
+        dispatch({ type: 'CREATE_UPDATE', index });
     }
     remove() {
       const { index, dispatch } = this.props;
       dispatch({ type: 'REMOVE_ITEM', index });
     }
     render() {
-        const { subject, content, important } = this.props;
+        const { subject, content, important, updatingId, index } = this.props;
         const input = (
             <input 
                 type="text" 
@@ -36,7 +32,7 @@ class Note extends React.Component {
                 placeholder="Enter new content" 
                 ref="txtContent" 
             />);
-        const xhtml = this.state.isUpdating ? input : <p>{content}</p>;
+        const xhtml = updatingId === index ? input : <p>{content}</p>;
 
         const buttonUpdate = (
             <div>
@@ -52,7 +48,7 @@ class Note extends React.Component {
             </div>
         );
 
-        const htmlControls = this.state.isUpdating ? buttonUpdate : buttonNotUpdate;
+        const htmlControls = updatingId === index ? buttonUpdate : buttonNotUpdate;
 
         return (
             <div>
@@ -65,4 +61,6 @@ class Note extends React.Component {
     }
 }
 
-module.exports = connect()(Note);
+module.exports = connect(state => 
+    ({ updatingId: state.updatingId })
+)(Note);

@@ -12,7 +12,8 @@ const defaultState = {
         { id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false},
         { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true},
         { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false}
-    ] 
+    ],
+    updatingId: 3 
 };
 
 const reducer = (state = defaultState, action) => {
@@ -27,6 +28,12 @@ const reducer = (state = defaultState, action) => {
                 return { ...e, content: action.content };
             }) 
         };
+    }
+    if (action.type === 'CANCEL_UPDATE') {
+        return { ...state, updatingId: null };
+    }
+    if (action.type === 'CREATE_UPDATE') {
+        return { ...state, updatingId: action.index };
     }
     return state;
 };
