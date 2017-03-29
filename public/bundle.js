@@ -10390,8 +10390,6 @@ module.exports = g;
 "use strict";
 
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 var _reactRedux = __webpack_require__(49);
 
 var _List = __webpack_require__(97);
@@ -10402,63 +10400,23 @@ var _TopBar = __webpack_require__(235);
 
 var _TopBar2 = _interopRequireDefault(_TopBar);
 
+var _store = __webpack_require__(236);
+
+var _store2 = _interopRequireDefault(_store);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = __webpack_require__(17);
 var ReactDOM = __webpack_require__(126);
-var redux = __webpack_require__(90);
 
 __webpack_require__(234);
 jQuery(document).ready(function () {
     return $(document).foundation();
 });
 
-var defaultState = {
-    mang: [{ id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false }, { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true }, { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }],
-    updatingId: null
-};
-
-var reducer = function reducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
-    var action = arguments[1];
-
-    if (action.type === 'REMOVE_ITEM') {
-        return _extends({}, state, { mang: state.mang.filter(function (e) {
-                return e.id !== action.index;
-            }) });
-    }
-    if (action.type === 'UPDATE_ITEM') {
-        return _extends({}, state, {
-            mang: state.mang.map(function (e) {
-                if (e.id !== action.index) return e;
-                return _extends({}, e, { content: action.content });
-            })
-        });
-    }
-    if (action.type === 'CANCEL_UPDATE') {
-        return _extends({}, state, { updatingId: null });
-    }
-    if (action.type === 'CREATE_UPDATE') {
-        return _extends({}, state, { updatingId: action.index });
-    }
-    return state;
-};
-
-var store = redux.createStore(reducer, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
-    return f;
-}));
-
-//foundation.zurb.com/sites/docs/
-
-store.subscribe(function () {
-    return console.log('State changed!!!');
-});
-
-console.log(store.getState());
-
 ReactDOM.render(React.createElement(
     _reactRedux.Provider,
-    { store: store },
+    { store: _store2.default },
     React.createElement(
         'div',
         null,
@@ -10657,12 +10615,12 @@ var Note = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                     'button',
-                    { onClick: this.cancel.bind(this) },
+                    { className: 'button', onClick: this.cancel.bind(this) },
                     'Hu\u1EF7'
                 ),
                 _react2.default.createElement(
                     'button',
-                    { onClick: this.save.bind(this) },
+                    { className: 'button', onClick: this.save.bind(this) },
                     'L\u01B0u'
                 )
             );
@@ -10672,12 +10630,12 @@ var Note = function (_React$Component) {
                 null,
                 _react2.default.createElement(
                     'button',
-                    { onClick: this.remove.bind(this) },
+                    { className: 'button', onClick: this.remove.bind(this) },
                     'Xo\xE1'
                 ),
                 _react2.default.createElement(
                     'button',
-                    { onClick: this.update.bind(this) },
+                    { className: 'button', onClick: this.update.bind(this) },
                     'S\u1EEDa'
                 )
             );
@@ -26982,6 +26940,83 @@ var TopBar = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = TopBar;
+
+/***/ }),
+/* 236 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _reducer = __webpack_require__(237);
+
+var _reducer2 = _interopRequireDefault(_reducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var redux = __webpack_require__(90);
+
+var store = redux.createStore(_reducer2.default, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
+    return f;
+}));
+
+//foundation.zurb.com/sites/docs/
+
+store.subscribe(function () {
+    return console.log('State changed!!!');
+});
+
+exports.default = store;
+
+/***/ }),
+/* 237 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var defaultState = {
+    mang: [{ id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false }, { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true }, { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }],
+    updatingId: null
+};
+
+var reducer = function reducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+    var action = arguments[1];
+
+    if (action.type === 'REMOVE_ITEM') {
+        return _extends({}, state, { mang: state.mang.filter(function (e) {
+                return e.id !== action.index;
+            }) });
+    }
+    if (action.type === 'UPDATE_ITEM') {
+        return _extends({}, state, {
+            mang: state.mang.map(function (e) {
+                if (e.id !== action.index) return e;
+                return _extends({}, e, { content: action.content });
+            })
+        });
+    }
+    if (action.type === 'CANCEL_UPDATE') {
+        return _extends({}, state, { updatingId: null });
+    }
+    if (action.type === 'CREATE_UPDATE') {
+        return _extends({}, state, { updatingId: action.index });
+    }
+    return state;
+};
+
+exports.default = reducer;
 
 /***/ })
 /******/ ]);

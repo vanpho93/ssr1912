@@ -35,15 +35,15 @@ class Note extends React.Component {
 
         const buttonUpdate = (
             <div>
-                <button onClick={this.cancel.bind(this)}>Huỷ</button>
-                <button onClick={this.save.bind(this)}>Lưu</button>
+                <button className="button" onClick={this.cancel.bind(this)}>Huỷ</button>
+                <button className="button" onClick={this.save.bind(this)}>Lưu</button>
             </div>
         );
 
         const buttonNotUpdate = (
             <div>
-                <button onClick={this.remove.bind(this)}>Xoá</button>
-                <button onClick={this.update.bind(this)}>Sửa</button>
+                <button className="button" onClick={this.remove.bind(this)}>Xoá</button>
+                <button className="button" onClick={this.update.bind(this)}>Sửa</button>
             </div>
         );
 
