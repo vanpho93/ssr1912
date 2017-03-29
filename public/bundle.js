@@ -26983,40 +26983,83 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var _mangReducer = __webpack_require__(239);
 
-var defaultState = {
-    mang: [{ id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false }, { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true }, { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }],
-    updatingId: null
-};
+var _mangReducer2 = _interopRequireDefault(_mangReducer);
 
-var reducer = function reducer() {
-    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultState;
+var _idReducer = __webpack_require__(238);
+
+var _idReducer2 = _interopRequireDefault(_idReducer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var redux = __webpack_require__(90);
+
+var reducer = redux.combineReducers({
+    mang: _mangReducer2.default, updatingId: _idReducer2.default
+});
+
+exports.default = reducer;
+
+/***/ }),
+/* 238 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var idReducer = function idReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
     var action = arguments[1];
 
-    if (action.type === 'REMOVE_ITEM') {
-        return _extends({}, state, { mang: state.mang.filter(function (e) {
-                return e.id !== action.index;
-            }) });
-    }
-    if (action.type === 'UPDATE_ITEM') {
-        return _extends({}, state, {
-            mang: state.mang.map(function (e) {
-                if (e.id !== action.index) return e;
-                return _extends({}, e, { content: action.content });
-            })
-        });
-    }
     if (action.type === 'CANCEL_UPDATE') {
-        return _extends({}, state, { updatingId: null });
+        return null;
     }
     if (action.type === 'CREATE_UPDATE') {
-        return _extends({}, state, { updatingId: action.index });
+        return action.index;
     }
     return state;
 };
 
-exports.default = reducer;
+exports.default = idReducer;
+
+/***/ }),
+/* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var defaultArray = [{ id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false }, { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true }, { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }];
+
+var mangReducer = function mangReducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultArray;
+    var action = arguments[1];
+
+    if (action.type === 'REMOVE_ITEM') {
+        return state.filter(function (e) {
+            return e.id !== action.index;
+        });
+    }
+    if (action.type === 'UPDATE_ITEM') {
+        return state.map(function (e) {
+            if (e.id !== action.index) return e;
+            return _extends({}, e, { content: action.content });
+        });
+    }
+    return state;
+};
+
+exports.default = mangReducer;
 
 /***/ })
 /******/ ]);

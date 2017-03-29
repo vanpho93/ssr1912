@@ -1,32 +1,10 @@
-const defaultState = { 
-    mang: [
-        { id: 1, subject: 'Hoc Tap', content: 'Lam bai tap ve nha', important: false },
-        { id: 2, subject: 'Hoc Tap', content: 'Nop do an cuoi khoa', important: true },
-        { id: 3, subject: 'An Choi', content: 'Di choi 8/3', important: false }
-    ],
-    updatingId: null 
-};
+import mang from './mangReducer';
+import updatingId from './idReducer';
 
-const reducer = (state = defaultState, action) => {
-    if (action.type === 'REMOVE_ITEM') {
-        return { ...state, mang: state.mang.filter(e => e.id !== action.index) }; 
-    }
-    if (action.type === 'UPDATE_ITEM') {
-        return { 
-            ...state, 
-            mang: state.mang.map(e => {
-                if (e.id !== action.index) return e;
-                return { ...e, content: action.content };
-            }) 
-        };
-    }
-    if (action.type === 'CANCEL_UPDATE') {
-        return { ...state, updatingId: null };
-    }
-    if (action.type === 'CREATE_UPDATE') {
-        return { ...state, updatingId: action.index };
-    }
-    return state;
-};
+const redux = require('redux');
+
+const reducer = redux.combineReducers({
+    mang, updatingId
+});
 
 export default reducer;
