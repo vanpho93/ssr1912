@@ -1,5 +1,6 @@
 import { Provider } from 'react-redux';
 import List from './oldComponent/List';
+import TopBar from './oldComponent/TopBar';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -49,7 +50,10 @@ console.log(store.getState());
 
 ReactDOM.render(
     <Provider store={store}>
-        <List />
+        <div>
+            <TopBar />
+            <List />
+        </div>
     </Provider>,
     document.getElementById('root')
 );

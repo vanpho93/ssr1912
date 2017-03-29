@@ -10398,6 +10398,10 @@ var _List = __webpack_require__(97);
 
 var _List2 = _interopRequireDefault(_List);
 
+var _TopBar = __webpack_require__(235);
+
+var _TopBar2 = _interopRequireDefault(_TopBar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = __webpack_require__(17);
@@ -10453,7 +10457,12 @@ console.log(store.getState());
 ReactDOM.render(React.createElement(
     _reactRedux.Provider,
     { store: store },
-    React.createElement(_List2.default, null)
+    React.createElement(
+        'div',
+        null,
+        React.createElement(_TopBar2.default, null),
+        React.createElement(_List2.default, null)
+    )
 ), document.getElementById('root'));
 
 /***/ }),
@@ -26829,6 +26838,148 @@ if(false) {
 	// When the module is disposed, remove the <style> tags
 	module.hot.dispose(function() { update(); });
 }
+
+/***/ }),
+/* 235 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(17);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TopBar = function (_React$Component) {
+    _inherits(TopBar, _React$Component);
+
+    function TopBar() {
+        _classCallCheck(this, TopBar);
+
+        return _possibleConstructorReturn(this, (TopBar.__proto__ || Object.getPrototypeOf(TopBar)).apply(this, arguments));
+    }
+
+    _createClass(TopBar, [{
+        key: "render",
+        value: function render() {
+            return _react2.default.createElement(
+                "div",
+                { className: "top-bar" },
+                _react2.default.createElement(
+                    "div",
+                    { className: "top-bar-left" },
+                    _react2.default.createElement(
+                        "ul",
+                        { className: "dropdown menu", "data-dropdown-menu": true },
+                        _react2.default.createElement(
+                            "li",
+                            { className: "menu-text" },
+                            "Site Title"
+                        ),
+                        _react2.default.createElement(
+                            "li",
+                            null,
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#" },
+                                "One"
+                            ),
+                            _react2.default.createElement(
+                                "ul",
+                                { className: "menu vertical" },
+                                _react2.default.createElement(
+                                    "li",
+                                    null,
+                                    _react2.default.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "One"
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    null,
+                                    _react2.default.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "Two"
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    "li",
+                                    null,
+                                    _react2.default.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "Three"
+                                    )
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "li",
+                            null,
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#" },
+                                "Two"
+                            )
+                        ),
+                        _react2.default.createElement(
+                            "li",
+                            null,
+                            _react2.default.createElement(
+                                "a",
+                                { href: "#" },
+                                "Three"
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { className: "top-bar-right" },
+                    _react2.default.createElement(
+                        "ul",
+                        { className: "menu" },
+                        _react2.default.createElement(
+                            "li",
+                            null,
+                            _react2.default.createElement("input", { type: "search", placeholder: "Search" })
+                        ),
+                        _react2.default.createElement(
+                            "li",
+                            null,
+                            _react2.default.createElement(
+                                "button",
+                                { type: "button", className: "button" },
+                                "Search"
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return TopBar;
+}(_react2.default.Component);
+
+exports.default = TopBar;
 
 /***/ })
 /******/ ]);
