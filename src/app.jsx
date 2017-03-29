@@ -3,9 +3,10 @@ import List from './oldComponent/List';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-
 const redux = require('redux');
 
+require('style-loader!css-loader!foundation-sites/dist/css/foundation.min.css');
+jQuery(document).ready(() => $(document).foundation());
 
 const defaultState = { 
     mang: [
