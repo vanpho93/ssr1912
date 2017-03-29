@@ -38,7 +38,9 @@ const reducer = (state = defaultState, action) => {
     return state;
 };
 
-const store = redux.createStore(reducer);
+const store = redux.createStore(reducer, redux.compose(
+    window.devToolsExtension ? window.devToolsExtension() : f => f
+));
 
 console.log(store.getState());
 
