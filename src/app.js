@@ -42,6 +42,8 @@ const store = redux.createStore(reducer, redux.compose(
     window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
 
+store.subscribe(() => console.log('State changed!!!'));
+
 console.log(store.getState());
 
 ReactDOM.render(

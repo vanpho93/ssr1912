@@ -8,8 +8,7 @@ class Note extends React.Component {
         const newContent = this.refs.txtContent.value;
         const { index, dispatch } = this.props;
         dispatch({ type: 'UPDATE_ITEM', index, content: newContent });
-        this.state.isUpdating = false;
-        this.setState(this.state);
+        dispatch({ type: 'CANCEL_UPDATE' });
     }
     cancel() {
         const { dispatch } = this.props;

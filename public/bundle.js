@@ -10501,8 +10501,7 @@ var Note = function (_React$Component) {
                 dispatch = _props.dispatch;
 
             dispatch({ type: 'UPDATE_ITEM', index: index, content: newContent });
-            this.state.isUpdating = false;
-            this.setState(this.state);
+            dispatch({ type: 'CANCEL_UPDATE' });
         }
     }, {
         key: 'cancel',
@@ -24233,6 +24232,10 @@ var reducer = function reducer() {
 var store = redux.createStore(reducer, redux.compose(window.devToolsExtension ? window.devToolsExtension() : function (f) {
     return f;
 }));
+
+store.subscribe(function () {
+    return console.log('State changed!!!');
+});
 
 console.log(store.getState());
 
