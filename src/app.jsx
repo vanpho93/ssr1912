@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
-import List from './oldComponent/List';
-import TopBar from './oldComponent/TopBar';
+import List from 'List';
+import TopBar from 'TopBar';
 import store from './redux/store';
 
 const React = require('react');

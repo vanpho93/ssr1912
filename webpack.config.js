@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
     entry: [
         'script-loader!jquery/dist/jquery.min.js',
@@ -7,6 +9,12 @@ module.exports = {
     output: {
         path: __dirname,
         filename: 'public/bundle.js'
+    },
+    resolve: {
+        alias: {
+            List: path.resolve(__dirname, 'src/oldComponent/List.js'),
+            TopBar: path.resolve(__dirname, 'src/oldComponent/TopBar.js')
+        }
     },
     module: {
         loaders: [
