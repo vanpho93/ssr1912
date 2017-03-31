@@ -7,3 +7,7 @@ app.use(express.static('public'));
 app.listen(3000, () => console.log('Server started'));
 
 app.get('/', (req, res) => res.render('home'));
+
+app.get('/getlist', (req, res) => {
+    res.send(['Android', 'iOS', 'React']);
+});

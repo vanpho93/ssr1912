@@ -10390,6 +10390,8 @@ module.exports = function(src) {
 "use strict";
 
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _reactRedux = __webpack_require__(49);
 
 var _List = __webpack_require__(97);
@@ -10410,6 +10412,12 @@ var _SimpleAuth2 = _interopRequireDefault(_SimpleAuth);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 var React = __webpack_require__(14);
 var ReactDOM = __webpack_require__(137);
 
@@ -10418,11 +10426,56 @@ jQuery(document).ready(function () {
     return $(document).foundation();
 });
 
-ReactDOM.render(React.createElement(
-    _reactRedux.Provider,
-    { store: _store2.default },
-    React.createElement(_SimpleAuth2.default, null)
-), document.getElementById('root'));
+var ListName = function (_React$Component) {
+    _inherits(ListName, _React$Component);
+
+    function ListName(props) {
+        _classCallCheck(this, ListName);
+
+        var _this = _possibleConstructorReturn(this, (ListName.__proto__ || Object.getPrototypeOf(ListName)).call(this, props));
+
+        _this.state = { mang: [] };
+        return _this;
+    }
+
+    _createClass(ListName, [{
+        key: 'render',
+        value: function render() {
+            return React.createElement(
+                'div',
+                null,
+                this.state.mang.map(function (e) {
+                    return React.createElement(
+                        'p',
+                        { key: e },
+                        e
+                    );
+                })
+            );
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            fetch('/getlist').then(function (res) {
+                return res.json();
+            }).then(function (result) {
+                return _this2.setState({ mang: result });
+            });
+        }
+    }]);
+
+    return ListName;
+}(React.Component);
+
+ReactDOM.render(React.createElement(ListName, null), document.getElementById('root'));
+
+//khoaphamtraining@gmail.com
+//github
+//heroku
+//video demo
+//NodeJS 1912 + ten + ten de tai
 
 /***/ }),
 /* 95 */
@@ -10758,6 +10811,8 @@ var _react = __webpack_require__(14);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouterDom = __webpack_require__(264);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10776,100 +10831,69 @@ var TopBar = function (_React$Component) {
     }
 
     _createClass(TopBar, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "div",
-                { className: "top-bar" },
+                'div',
+                { className: 'top-bar' },
                 _react2.default.createElement(
-                    "div",
-                    { className: "top-bar-left" },
+                    'div',
+                    { className: 'top-bar-left' },
                     _react2.default.createElement(
-                        "ul",
-                        { className: "dropdown menu", "data-dropdown-menu": true },
+                        'ul',
+                        { className: 'dropdown menu', 'data-dropdown-menu': true },
                         _react2.default.createElement(
-                            "li",
-                            { className: "menu-text" },
-                            "Site Title"
+                            'li',
+                            { className: 'menu-text' },
+                            'Khoa Pham'
                         ),
                         _react2.default.createElement(
-                            "li",
+                            'li',
                             null,
                             _react2.default.createElement(
-                                "a",
-                                { href: "#" },
-                                "One"
-                            ),
-                            _react2.default.createElement(
-                                "ul",
-                                { className: "menu vertical" },
-                                _react2.default.createElement(
-                                    "li",
-                                    null,
-                                    _react2.default.createElement(
-                                        "a",
-                                        { href: "#" },
-                                        "One"
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    "li",
-                                    null,
-                                    _react2.default.createElement(
-                                        "a",
-                                        { href: "#" },
-                                        "Two"
-                                    )
-                                ),
-                                _react2.default.createElement(
-                                    "li",
-                                    null,
-                                    _react2.default.createElement(
-                                        "a",
-                                        { href: "#" },
-                                        "Three"
-                                    )
-                                )
+                                _reactRouterDom.NavLink,
+                                { to: '/', exact: true, activeStyle: { fontWeight: 'bold' } },
+                                'Home'
                             )
                         ),
                         _react2.default.createElement(
-                            "li",
+                            'li',
                             null,
                             _react2.default.createElement(
-                                "a",
-                                { href: "#" },
-                                "Two"
+                                _reactRouterDom.NavLink,
+                                { to: '/public', activeStyle: { fontWeight: 'bold' } },
+                                'Public'
                             )
                         ),
                         _react2.default.createElement(
-                            "li",
+                            'li',
                             null,
                             _react2.default.createElement(
-                                "a",
-                                { href: "#" },
-                                "Three"
+                                _reactRouterDom.NavLink,
+                                { to: '/private', activeStyle: { fontWeight: 'bold' } },
+                                'Private'
                             )
                         )
                     )
                 ),
                 _react2.default.createElement(
-                    "div",
-                    { className: "top-bar-right" },
+                    'div',
+                    { className: 'top-bar-right' },
                     _react2.default.createElement(
-                        "ul",
-                        { className: "menu" },
+                        'ul',
+                        { className: 'menu' },
                         _react2.default.createElement(
-                            "li",
+                            'li',
                             null,
-                            _react2.default.createElement("input", { type: "search", placeholder: "Search" })
+                            _react2.default.createElement('input', { type: 'search', placeholder: 'Search' })
                         ),
                         _react2.default.createElement(
-                            "li",
+                            'li',
                             null,
                             _react2.default.createElement(
-                                "button",
-                                { type: "button", className: "button" },
-                                "Search"
+                                'button',
+                                { type: 'button', className: 'button' },
+                                'Search'
                             )
                         )
                     )
@@ -30122,6 +30146,10 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouterDom = __webpack_require__(264);
 
+var _TopBar = __webpack_require__(100);
+
+var _TopBar2 = _interopRequireDefault(_TopBar);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var isAuthenticated = true;
@@ -30155,43 +30183,13 @@ var SimpleAuth = function SimpleAuth() {
         _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(
-                'ul',
-                null,
-                _react2.default.createElement(
-                    'li',
-                    null,
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/' },
-                        'Home'
-                    )
-                ),
-                _react2.default.createElement(
-                    'li',
-                    null,
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/public' },
-                        'Public'
-                    )
-                ),
-                _react2.default.createElement(
-                    'li',
-                    null,
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/private' },
-                        'Private'
-                    )
-                )
-            ),
+            _react2.default.createElement(_TopBar2.default, null),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: Home }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/public', component: Public }),
             _react2.default.createElement(_reactRouterDom.Route, {
                 path: '/private',
                 render: function render() {
-                    return isAuthenticated ? _react2.default.createElement(Private, null) : _react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/' } });
+                    return isAuthenticated ? _react2.default.createElement(Private, null) : _react2.default.createElement(_reactRouterDom.Redirect, { to: '/' });
                 }
             })
         )

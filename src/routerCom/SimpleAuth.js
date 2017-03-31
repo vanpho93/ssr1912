@@ -1,5 +1,6 @@
 import React from 'react';
 import { HashRouter, Route, Link, Redirect } from 'react-router-dom';
+import TopBar from '../oldComponent/TopBar';
 
 let isAuthenticated = true;
 
@@ -10,16 +11,14 @@ const Private = () => <h2>Private Component</h2>;
 const SimpleAuth = () => (
     <HashRouter>
         <div>
-            <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/public'>Public</Link></li>
-                <li><Link to='/private'>Private</Link></li>
-            </ul>
+            <TopBar />
             <Route exact path='/' component={Home} />
             <Route path='/public' component={Public} />
             <Route 
                 path='/private' 
-                render={() => (isAuthenticated ? <Private /> : <Redirect to={{ pathname: '/' }} />)} 
+                render={() => 
+                    (isAuthenticated ? <Private /> : <Redirect to='/' />
+                )} 
             />
         </div>
     </HashRouter>

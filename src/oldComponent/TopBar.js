@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 export default class TopBar extends React.Component {
     render() {
@@ -6,17 +7,10 @@ export default class TopBar extends React.Component {
             <div className="top-bar">
                 <div className="top-bar-left">
                     <ul className="dropdown menu" data-dropdown-menu>
-                        <li className="menu-text">Site Title</li>
-                        <li>
-                            <a href="#">One</a>
-                            <ul className="menu vertical">
-                                <li><a href="#">One</a></li>
-                                <li><a href="#">Two</a></li>
-                                <li><a href="#">Three</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="#">Two</a></li>
-                        <li><a href="#">Three</a></li>
+                        <li className="menu-text">Khoa Pham</li>
+                        <li><NavLink to='/' exact activeStyle={{ fontWeight: 'bold' }}>Home</NavLink></li>
+                        <li><NavLink to='/public' activeStyle={{ fontWeight: 'bold' }}>Public</NavLink></li>
+                        <li><NavLink to='/private' activeStyle={{ fontWeight: 'bold' }}>Private</NavLink></li>
                     </ul>
                 </div>
                 <div className="top-bar-right">
