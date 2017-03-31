@@ -1,4 +1,5 @@
 import React from 'react';
+import { HashRouter, Route } from 'react-router-dom';
 
 const Home = () => (
     <div>Home component</div>
@@ -13,11 +14,13 @@ const Contact = (props) => (
 );
 
 const SimpleRouter = () => (
-    <div>
-        <Home />
-        <About />
-        <Contact name='Pho' />
-    </div>
+    <HashRouter>
+        <div>
+            <Route exact path='/' component={Home} />
+            <Route path='/about' component={About} />
+            <Route path='/contact' render={() => <Contact name='Pho' />} />
+        </div>
+    </HashRouter>
 );
 
 export default SimpleRouter;
