@@ -27067,6 +27067,53 @@ module.exports = __webpack_require__(94);
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(14);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Home = function Home() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        'Home component'
+    );
+};
+
+var About = function About() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        'About component'
+    );
+};
+
+var Contact = function Contact(props) {
+    return _react2.default.createElement(
+        'div',
+        null,
+        'Contact component ',
+        props.name
+    );
+};
+
+var SimpleRouter = function SimpleRouter() {
+    return _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(Home, null),
+        _react2.default.createElement(About, null),
+        _react2.default.createElement(Contact, { name: 'Pho' })
+    );
+};
+
+exports.default = SimpleRouter;
+
 /***/ })
 /******/ ]);
 //# sourceMappingURL=bundle.js.map
