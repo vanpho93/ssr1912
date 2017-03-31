@@ -27111,6 +27111,37 @@ var SimpleRouter = function SimpleRouter() {
         _react2.default.createElement(
             'div',
             null,
+            _react2.default.createElement(
+                'ul',
+                null,
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/' },
+                        'Home'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/about' },
+                        'About'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/contact' },
+                        'Contact'
+                    )
+                )
+            ),
             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: Home }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: About }),
             _react2.default.createElement(_reactRouterDom.Route, { path: '/contact', render: function render() {
