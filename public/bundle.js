@@ -10404,6 +10404,10 @@ var _store = __webpack_require__(104);
 
 var _store2 = _interopRequireDefault(_store);
 
+var _SimpleRouter = __webpack_require__(240);
+
+var _SimpleRouter2 = _interopRequireDefault(_SimpleRouter);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var React = __webpack_require__(14);
@@ -10417,12 +10421,7 @@ jQuery(document).ready(function () {
 ReactDOM.render(React.createElement(
     _reactRedux.Provider,
     { store: _store2.default },
-    React.createElement(
-        'div',
-        null,
-        React.createElement(_TopBar2.default, null),
-        React.createElement(_List2.default, null)
-    )
+    React.createElement(_SimpleRouter2.default, null)
 ), document.getElementById('root'));
 
 /***/ }),
@@ -27059,6 +27058,13 @@ module.exports = function(module) {
 __webpack_require__(96);
 __webpack_require__(95);
 module.exports = __webpack_require__(94);
+
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 
 
 /***/ })
