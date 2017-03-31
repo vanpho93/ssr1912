@@ -10404,9 +10404,9 @@ var _store = __webpack_require__(104);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _SimpleRouter = __webpack_require__(240);
+var _SimpleAuth = __webpack_require__(277);
 
-var _SimpleRouter2 = _interopRequireDefault(_SimpleRouter);
+var _SimpleAuth2 = _interopRequireDefault(_SimpleAuth);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10421,7 +10421,7 @@ jQuery(document).ready(function () {
 ReactDOM.render(React.createElement(
     _reactRedux.Provider,
     { store: _store2.default },
-    React.createElement(_SimpleRouter2.default, null)
+    React.createElement(_SimpleAuth2.default, null)
 ), document.getElementById('root'));
 
 /***/ }),
@@ -27061,99 +27061,7 @@ module.exports = __webpack_require__(94);
 
 
 /***/ }),
-/* 240 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _react = __webpack_require__(14);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRouterDom = __webpack_require__(264);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var Home = function Home() {
-    return _react2.default.createElement(
-        'div',
-        null,
-        'Home component'
-    );
-};
-
-var About = function About() {
-    return _react2.default.createElement(
-        'div',
-        null,
-        'About component'
-    );
-};
-
-var Contact = function Contact(props) {
-    return _react2.default.createElement(
-        'div',
-        null,
-        'Contact component ',
-        props.name
-    );
-};
-
-var SimpleRouter = function SimpleRouter() {
-    return _react2.default.createElement(
-        _reactRouterDom.HashRouter,
-        null,
-        _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(
-                'ul',
-                null,
-                _react2.default.createElement(
-                    'li',
-                    null,
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/' },
-                        'Home'
-                    )
-                ),
-                _react2.default.createElement(
-                    'li',
-                    null,
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/about' },
-                        'About'
-                    )
-                ),
-                _react2.default.createElement(
-                    'li',
-                    null,
-                    _react2.default.createElement(
-                        _reactRouterDom.Link,
-                        { to: '/contact' },
-                        'Contact'
-                    )
-                )
-            ),
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: Home }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/about', component: About }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/contact', render: function render() {
-                    return _react2.default.createElement(Contact, { name: 'Pho' });
-                } })
-        )
-    );
-};
-
-exports.default = SimpleRouter;
-
-/***/ }),
+/* 240 */,
 /* 241 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -30196,6 +30104,101 @@ var valueEqual = function valueEqual(a, b) {
 };
 
 exports.default = valueEqual;
+
+/***/ }),
+/* 277 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(14);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(264);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var isAuthenticated = true;
+
+var Home = function Home() {
+    return _react2.default.createElement(
+        'h2',
+        null,
+        'Home Component'
+    );
+};
+var Public = function Public() {
+    return _react2.default.createElement(
+        'h2',
+        null,
+        'Public Component'
+    );
+};
+var Private = function Private() {
+    return _react2.default.createElement(
+        'h2',
+        null,
+        'Private Component'
+    );
+};
+
+var SimpleAuth = function SimpleAuth() {
+    return _react2.default.createElement(
+        _reactRouterDom.HashRouter,
+        null,
+        _react2.default.createElement(
+            'div',
+            null,
+            _react2.default.createElement(
+                'ul',
+                null,
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/' },
+                        'Home'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/public' },
+                        'Public'
+                    )
+                ),
+                _react2.default.createElement(
+                    'li',
+                    null,
+                    _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { to: '/private' },
+                        'Private'
+                    )
+                )
+            ),
+            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: Home }),
+            _react2.default.createElement(_reactRouterDom.Route, { path: '/public', component: Public }),
+            _react2.default.createElement(_reactRouterDom.Route, {
+                path: '/private',
+                render: function render() {
+                    return isAuthenticated ? _react2.default.createElement(Private, null) : _react2.default.createElement(_reactRouterDom.Redirect, { to: { pathname: '/' } });
+                }
+            })
+        )
+    );
+};
+
+exports.default = SimpleAuth;
 
 /***/ })
 /******/ ]);

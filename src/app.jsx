@@ -2,7 +2,7 @@ import { Provider } from 'react-redux';
 import List from 'List';
 import TopBar from 'TopBar';
 import store from './redux/store';
-import SimpleRouter from './routerCom/SimpleRouter';
+import SimpleAuth from './routerCom/SimpleAuth';
 
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -14,7 +14,7 @@ jQuery(document).ready(() => $(document).foundation());
 
 ReactDOM.render(
     <Provider store={store}>
-            <SimpleRouter />
+            <SimpleAuth />
     </Provider>,
     document.getElementById('root')
 );
